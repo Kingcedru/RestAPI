@@ -7,7 +7,10 @@ const mongoose = require("mongoose");
 const productRoutes = require("./api/routes/poducts");
 const ordersRoutes = require("./api/routes/orders");
 
-mongoose.connect('mongodb+srv://byishimocedrick:king123@cluster0.gqjqbg0.mongodb.net/')
+mongoose.connect(
+  "mongodb+srv://byishimocedrick:king123@cluster0.gqjqbg0.mongodb.net/"
+);
+mongoose.Promise = global.Promise;
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,9 +23,9 @@ app.use((req, res, next) => {
   );
   if (req.method === "OPTIONS") {
     res.header("Access-Control-Allow-Origin", "PUT, POST, PATCH, DELETE, GET");
-   return res.status(200).json({});
+    return res.status(200).json({});
   }
-  next()
+  next();
 });
 
 // Routes which should handle requests
